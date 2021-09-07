@@ -146,3 +146,31 @@ for key, value in dict5.items():
 
 
 # TODO: set, tuple, frozenset
+
+###sets:
+
+myset: set = {"toyota", "suzuki", "audi"}
+print(myset)
+print(type(myset))
+print(len(myset))
+
+myset2: set = {"toyota", "suzuki", "audi","toyota"} #no duplicate
+print(myset2)
+print(len(myset2))
+
+###tuple:
+mytuple: tuple = ("toyota", "suzuki", "audi")
+print(mytuple)
+print(type(mytuple))
+print(mytuple[1]) #acts like a list that can't be changed
+print(len(mytuple))
+
+###frozenset
+#immutable version of a Python set object
+#Not ordered
+
+frozen_set: frozenset = frozenset(myset)
+print(frozen_set)
+print(type(frozen_set))
+print(len(frozen_set))
+#frozen_set += myset2 returns an error
