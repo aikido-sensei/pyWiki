@@ -11,6 +11,7 @@ class Car(object):
         self.__speed_in_kmph: float = 0
         self.max_speed_in_kmph = 0
 
+
     @staticmethod
     def get_type() -> str:
         return "Car"
@@ -20,7 +21,7 @@ class Car(object):
         Set the state of the engine.
         :param engine_on: Engine state as a boolean value. If True, it means the engine is ON, else it is OFF.
         """
-        self.engine_on = engine_on
+        self.__engine_on = engine_on
 
     def get_engine_on(self) -> bool:
         """
@@ -43,60 +44,42 @@ class Car(object):
 
         elif not self.is_speed_possible(speed_in_kmph):
             raise AttributeError(f"Cannot set speed ({speed_in_kmph} kmph) as it's not attainable!")
-        self.__speed_in_kmph = speed_in_kmph
+
 
     def get_speed_in_kmph(self) -> float:
         """
         Get the speed of the car in kmph.
         :return: The speed of the car in kmph.
         """
-        return self.speed_in_kmph
+        return self.__speed_in_kmph
 
     """
     TODO: Add functionality to brake. Braking reduces the speed by 5kmph per second. Two brake methods. 
     One to got to desired speed. Another to brake for specified duration.
     """
 
-    def brake_to_speed(self, desired_speed: float ) -> None :
+    def brake_to_speed(self, desired_speed: float) -> None:
         """
-        Brake at a rate of 5kmph/s until the car is at the desired speed.
-        Desired_speed: Is the speed at which you want the car to be. 
+        This function makes the car brake at a rate of 5kmph/s until the car is at the desired speed.
+        :param desired_speed: speed at which you want the car to be. 
         """
-        if desired_speed > self.speed_in_kmph:
+        if desired_speed > self.__speed_in_kmph:
             raise AttributeError("Cannot brake to a higher speed")
-        
-        if desired_speed < 0 :
-            desired_speed = 0
 
-        while self.speed_in_kmph - desired_speed != 0:
+        if desired_speed < 0:
+            raise AttributeError("Cannot brake to a speed lower than 0 kmp/h")
 
-          if self.speed_in_kmph - desired_speed > 5:
-              self.speed_in_kmph -= 5
-              time.sleep(0.9999999999)
-        
-          else:
-              self.speed_in_kmph = self.speed_in_kmph - desired_speed
-              time.sleep(0.9999999)
+        time.sleep((self.__speed_in_kmph - desired_speed) / 5)
+        self.__speed_in_kmph = desired_speed
 
-
-    def brake_for(self, time: int ) -> None:
+    def brake_for(self, time_in_seconds: int) -> None:
         """
         Brake at a rate of 5kmph/s for a certain duration.
         Time: Is the duration for which you want to brake. 
         """
 
-        for second in range(time): 
-
-          if self.speed_in_kmph >= 5:
-              self.speed_in_kmph -= 5
-              time.sleep(0.9999999999)
-        
-          else:
-              self.speed_in_kmph = 0
-              time.sleep(0.9999999)
-              break
-        
-
+        time.sleep(time_in_seconds)
+        self.__speed_in_kmph = int(max(self.__speed_in_kmph - time * 5, 0))
 
     def get_manufacturer(self) -> str:
         """
@@ -139,10 +122,12 @@ if __name__ == '__main__':
     print(car2.get_engine_on())
     print(car2.get_speed_in_kmph())
 
-
     time.sleep(1)
-    """
-    TODO: Add functionality to brake. Braking reduces the speed by 5kmph per second. Two brake methods. 
-    One to get to the desired speed. Another to brake for specified duration.
-    """
+
+    car1.brake_to_speed(80)
+    print(car1.get_speed_in_kmph)
+
+    car1.brake_for(5)
+    print(car1.get_speed_in_kmph)
+
 
