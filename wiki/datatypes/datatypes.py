@@ -154,6 +154,14 @@ print(myset)
 print(type(myset))
 print(len(myset))
 
+#this removes toyota from the set 
+myset.remove('toyota')
+print(myset)
+
+#this adds toyota to the set 
+myset.add("toyota")
+print(myset)
+
 myset2: set = {"toyota", "suzuki", "audi","toyota"} #no duplicate
 print(myset2)
 print(len(myset2))
@@ -165,6 +173,14 @@ print(type(mytuple))
 print(mytuple[1]) #acts like a list that can't be changed
 print(len(mytuple))
 
+#Adding an item to a tuple is impossible. The next two lines return : AttributeError: 'tuple' object has no attribute 'add'
+  #mytuple.add("bmw")
+  #print(mytuple)
+
+#Removing an item from a tuple is impossible. The next two lines return : AttributeError: 'tuple' object has no attribute 'remove'
+  #mytuple.remove("bmw")
+  #print(mytuple)
+
 ###frozenset
 #immutable version of a Python set object
 #Not ordered
@@ -174,3 +190,11 @@ print(frozen_set)
 print(type(frozen_set))
 print(len(frozen_set))
 #frozen_set += myset2 returns an error
+
+#Removing an item from a frozen set is impossible. The next two lines return : AttributeError: 'frozenset' object has no attribute 'remove'
+  #frozen_set.remove('toyota')
+  #print(myset)
+
+#Adding an item to a frozen set is impossible. The next two lines return : AttributeError: 'frozenset' object has no attribute 'add'
+  #frozen_set.add("toyota")
+  #print(myset)
