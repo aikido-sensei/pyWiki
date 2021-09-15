@@ -16,6 +16,6 @@ sum_of_n_numbers = lambda n, accumulator = 0: accumulator + 1 if n == 1 else sum
 print(sum_of_n_numbers(5))
 
 #2
-value_of_pi = lambda n, accumulator = 0: (accumulator + 1)*4 if n == 0 else value_of_pi(n-1, ((-1) ** n /(2*n+1)) + accumulator) 
+value_of_pi = lambda n, accumulator = 0: -1 if n < 0 else (accumulator + 1)*4 if n == 0 else value_of_pi(n-1, ((-1) ** n /(2*n+1)) + accumulator) 
 
 print(value_of_pi(950))
